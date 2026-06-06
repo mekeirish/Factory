@@ -384,8 +384,16 @@
         });
     </script>
 
-<script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));}</script>
-
-<script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));}</script>
+<script>
+    // Nettoyage des anciens Service Workers
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for (let registration of registrations) {
+                registration.unregister();
+                console.log('Service Worker désactivé.');
+            }
+        });
+    }
+</script>
 </body>
 </html>
